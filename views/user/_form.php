@@ -6,13 +6,13 @@ use yii\widgets\ActiveForm;
 $this->title = 'Add-user';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-			<?php if( Yii::$app->session->hasFlash('success') ): ?>
-				<div class="alert alert-success alert-dismissible" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<?php echo Yii::$app->session->getFlash('success'); ?>
-				</div>
-			<?php endif;?>
 
+<?php if( Yii::$app->session->hasFlash('success') ): ?>
+	<div class="alert alert-success alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<?php echo Yii::$app->session->getFlash('success'); ?>
+	</div>
+<?php endif;?>
 <div class="product-form">
 
     <?php $form = ActiveForm::begin([
@@ -121,7 +121,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </fieldset>
 
-    <?= Html::submitButton('Add', ['class' => 'btn btn-success'])?>
+    <?= Html::submitButton('Add', ['class' => 'btn btn-sm btn-success'])?> <?= Html::a('Cancel', ['site/index'], ['class' => 'btn btn-sm btn-primary']) ?>
     <?php ActiveForm::end(); ?>
 
 </div>

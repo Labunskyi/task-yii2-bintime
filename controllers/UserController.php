@@ -17,10 +17,23 @@ class UserController extends Controller
         $model->setAttributes(Yii::$app->request->post());
         
         if (Yii::$app->request->post() && $model->save()) {
-            Yii::$app->getSession()->setFlash('success', 'User has been created.');
+			Yii::$app->getSession()->setFlash('success', 'User has been created.');
             return $this->refresh();
         }
         return $this->render('create', ['model' => $model]);
+    }
+	
+	public function actionUpdate($id)
+    {
+        $model = new ProductForm();
+        $model->product = $this->findModel($id);
+		$model->product->loadDefaultValues();
+        $model->setAttributes(Yii::$app->request->post());
+        
+        if (Yii::$app->request->post() && $model->save()) {
+            return $this->redirect(['site/index', 'id' => $model->product->id]);
+        }
+        return $this->render('update', ['model' => $model]);
     }
     
     protected function findModel($id)
