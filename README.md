@@ -36,6 +36,9 @@ e-mail, уникальный
 
 Выполненную работу можете прислать архивом или выложить на github/bitbucket (будет приятно если исходный скелет приложения и все ваши изменения будут в разных коммитах). 
 
+Результат: http://h93145lr.beget.tech
+
+
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
