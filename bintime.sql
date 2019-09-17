@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Сен 17 2019 г., 03:05
+-- Время создания: Сен 17 2019 г., 07:33
 -- Версия сервера: 10.1.38-MariaDB
 -- Версия PHP: 7.3.2
 
@@ -50,51 +50,8 @@ INSERT INTO `addresses` (`id`, `userid`, `post_index`, `country`, `city`, `stree
 (14, 87, '1111', 'TR', '1111', '111', '222', '3553'),
 (15, 86, '09876', 'YU', 'qw', 'qwe', 'qe', '1'),
 (16, 85, '09876', 'WS', 'qw', 'qwe', 'qe', '1'),
-(17, 88, '09876', 'T', 'qw', 'qw', 'wq', 'qw'),
 (18, 88, '09983', 'ER', 'qw', 'qw', 'wqqw', 'qwqw'),
 (19, 89, '09876', 'RR', 'qw', 'qwe', 'a', 'a');
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `parcel`
---
-
-CREATE TABLE `parcel` (
-  `id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `code` varchar(255) NOT NULL,
-  `height` int(11) NOT NULL,
-  `width` int(11) NOT NULL,
-  `depth` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `parcel`
---
-
-INSERT INTO `parcel` (`id`, `product_id`, `code`, `height`, `width`, `depth`) VALUES
-(47, 45, '1', 1, 1, 1),
-(48, 46, '1', 1, 1, 1);
-
--- --------------------------------------------------------
-
---
--- Структура таблицы `product`
---
-
-CREATE TABLE `product` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `product`
---
-
-INSERT INTO `product` (`id`, `name`) VALUES
-(45, 'er'),
-(46, '1');
 
 -- --------------------------------------------------------
 
@@ -135,19 +92,6 @@ ALTER TABLE `addresses`
   ADD KEY `userid` (`userid`);
 
 --
--- Индексы таблицы `parcel`
---
-ALTER TABLE `parcel`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_id` (`product_id`);
-
---
--- Индексы таблицы `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -166,32 +110,10 @@ ALTER TABLE `addresses`
   MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT для таблицы `parcel`
---
-ALTER TABLE `parcel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
-
---
--- AUTO_INCREMENT для таблицы `product`
---
-ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
-
---
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
-
---
--- Ограничения внешнего ключа сохраненных таблиц
---
-
---
--- Ограничения внешнего ключа таблицы `parcel`
---
-ALTER TABLE `parcel`
-  ADD CONSTRAINT `parcel_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
