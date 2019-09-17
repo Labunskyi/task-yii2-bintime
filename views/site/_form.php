@@ -11,9 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="addresses-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'userid')->textInput() ?>
-
+	
     <?= $form->field($model, 'post_index')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'country')->textInput(['maxlength' => true]) ?>
@@ -27,7 +25,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'appartment')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-sm btn-success']) ?> <?= Html::a('Cancel', ['site/view'], ['class' => 'btn btn-sm btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

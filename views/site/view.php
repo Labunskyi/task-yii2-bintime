@@ -9,7 +9,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-index">
 
     <div class="body-content">
-        <div class="row">
+        <div class="row" style="min-height: 450px;">
             <div class="col-md-12">
 			
                 <h3>User</h3>
@@ -45,6 +45,9 @@ $this->params['breadcrumbs'][] = $this->title;
 		</tr>
 		<?php } }?>
 	</table>
+	<?= Html::a('Home', ['site/index'], ['class' => 'btn btn-sm btn-primary']) ?>
+	<?= Html::a('Add adress', ['site/create-address', 'id' => $user[0]['id']], ['class' => 'btn btn-sm btn-success']) ?>
+	
 	<h3>Address</h3>
 	<table class="table table-bordered">
 		<thead>
@@ -56,15 +59,15 @@ $this->params['breadcrumbs'][] = $this->title;
 				<th>Street</th>
 				<th>House</th>
 				<th>Appartment</th>
+				<th>Update</th>
 				<th>Delete</th>
 
 			</tr>
 		</thead>
 
 		<?php 
-		if (isset($user)) {
-		$k = 1; foreach($user as $us)
-		foreach ($us['parcels'] as $address) 
+		if (isset($addresses)) {
+		$k = 1; foreach($addresses as $address)
 		{ ?>	
 		<tr>
 			<td><?=$k++?></td>
@@ -79,8 +82,8 @@ $this->params['breadcrumbs'][] = $this->title;
 						echo 'n/a';
 				}?>
 			</td>
-			
-			<td><?= Html::a('Delete', ['site/delete-address', 'id' => $address['id']], ['class' => 'btn btn-sm btn-danger']) ?></td>
+			<td><?= Html::a('Update', ['site/update-address', 'id' => $address['id'], 'us' => $us['id']], ['class' => 'btn btn-sm btn-warning']) ?></td>
+			<td><?= Html::a('Delete', ['site/delete-address', 'id' => $address['id'], 'us' => $us['id']], ['class' => 'btn btn-sm btn-danger']) ?></td>
 
 		</tr>
 		<?php }
@@ -89,7 +92,10 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>    
         </div>
     </div>
-	
-	<?= Html::a('Home', ['site/index'], ['class' => 'btn btn-sm btn-primary']) ?>
+	<?php 
+		echo \yii\widgets\LinkPager::widget([
+			'pagination' => $pages,
+		]);
+	?>
 	
 </div>

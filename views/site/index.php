@@ -9,8 +9,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div class="body-content">
         <div class="row">
-            <div class="col-md-12">
-			
+            <div class="col-md-12" style="min-height: 450px;">
                 <h3>Users list</h3>
 	<p>
         <?= Html::a('Add User', ['user/create'], ['class' => 'btn btn-sm btn-success']) ?>

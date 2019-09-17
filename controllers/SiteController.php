@@ -56,20 +56,55 @@ class SiteController extends Controller
         return $this->redirect(['index']);
     }
 	
-	public function actionDeleteAddress($id)
+	public function actionDeleteAddress($id, $us)
     {
         Parcel::findOne($id)->delete();
+		$user = Product::findOne($us);
+        return $this->redirect(['view', 'id' => $user->id]);
+    }
+	
+	public function actionUpdateAddress($id, $us)
+    {
+        $model = Parcel::findOne($id);
+		$user = Product::findOne($us);
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
 
-        return $this->redirect(['index']);
+           return $this->redirect(['view', 'id' => $user->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+			'user' => $user,
+        ]);
+    }
+	
+	public function actionCreateAddress($id)
+    {
+		$model = new Parcel();
+		$model->userid = $id;
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->userid]);
+        }
+
+        return $this->render('create', [
+            'model' => $model, 'id' => $id
+        ]);
     }
 	
 	public function actionView($id)
     {	
 		$user = Product::find()->with('parcels')->where(['id' => $id])->asArray()->all();
 		
-		
+		$query = Parcel::find()->where(['userid' => $id])->asArray();
+		$pages = new Pagination(['defaultPageSize'=> 5, 'totalCount' => $query->count()]);
+		$addresses = $query->offset($pages->offset)
+		->limit($pages->limit)
+		->all();
         return $this->render('view', [
-            'user' => $user, 
+			'user' => $user,
+            'addresses' => $addresses, 
+			'pages' => $pages,
         ]);
     }
 	
